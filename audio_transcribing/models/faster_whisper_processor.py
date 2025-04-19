@@ -41,8 +41,8 @@ class FasterWhisperProcessor(WhisperTranscribeProcessor):
         None
         """
 
-        self.model_size = model_size
-        self.model = WhisperModel(model_size)
+        self._model_size = model_size
+        self._model = WhisperModel(model_size)
 
     def transcribe_audio(self,
                          audio: np.ndarray,
@@ -72,7 +72,7 @@ class FasterWhisperProcessor(WhisperTranscribeProcessor):
             "language": language,
             "initial_prompt": main_theme
         }
-        segments, info = self.model.transcribe(audio, **options)
+        segments, info = self._model.transcribe(audio, **options)
 
         transcription = " ".join(segment.text for segment in segments).strip()
         detected_language = info.language if language is None else language

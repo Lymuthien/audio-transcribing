@@ -2,7 +2,7 @@ import unittest
 
 from parameterized import parameterized
 
-from audio_transcriber.audio_transcribing import NatashaStopwordsRemover
+from audio_transcribing import NatashaStopwordsRemover
 
 
 class TestNatashaStopwordsRemover(unittest.TestCase):

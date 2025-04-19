@@ -36,8 +36,8 @@ class WhisperProcessor(WhisperTranscribeProcessor):
             The size of the Whisper model to load. Defaults to 'base'.
         """
 
-        self.model_size = model_size
-        self.model = whisper.load_model(model_size)
+        self._model_size = model_size
+        self._model = whisper.load_model(model_size)
 
     def transcribe_audio(self,
                          audio: np.ndarray,
@@ -67,9 +67,13 @@ class WhisperProcessor(WhisperTranscribeProcessor):
             "language": language,
             "initial_prompt": main_theme
         }
-        result = whisper.transcribe(self.model, audio, **options)
+        result = whisper.transcribe(self._model, audio, **options)
 
         transcription = result.get('text', '').strip()
-        detected_language = result.get('language', language or 'unknown')
+
+        if not language:
+            detected_language = result.get('language', 'unknown')
+        else:
+            detected_language = language
 
         return transcription, detected_language
