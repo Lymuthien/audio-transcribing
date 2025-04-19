@@ -41,8 +41,15 @@ class TranscribeProcessorDirector(object):
         processor : WhisperTranscribeProcessor
             Internal processor instance utilized for transcription-related
             tasks.
+
+        Raises
+        ------
+        TypeError
+            If processor is not an instance of WhisperTranscribeProcessor.
         """
-        self._processor = processor
+
+        self._processor : WhisperTranscribeProcessor | None = None
+        self.set_processor(processor)
 
     def set_processor(self, processor: WhisperTranscribeProcessor) -> None:
         """
@@ -55,7 +62,14 @@ class TranscribeProcessorDirector(object):
         ----------
         processor : WhisperTranscribeProcessor
             The processor instance to be set.
+
+        Raises
+        ------
+        TypeError
+            If processor is not an instance of WhisperTranscribeProcessor.
         """
+        if not isinstance(processor, WhisperTranscribeProcessor):
+            raise TypeError("Processor must be an instance of WhisperTranscribeProcessor.")
 
         self._processor = processor
 

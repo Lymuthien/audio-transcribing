@@ -43,9 +43,15 @@ class VoiceSeparatorDirector(object):
         ----------
         separator : ResamplingVoiceSeparator
             The separator instance used for handling speaker separation tasks.
+
+        Raises
+        ------
+        TypeError
+            If the provided separator is not an instance of ResamplingVoiceSeparator.
         """
 
-        self._separator = separator
+        self._separator: ResamplingVoiceSeparator | None = None
+        self.set_separator(separator)
 
     def set_separator(self, separator: ResamplingVoiceSeparator):
         """
@@ -55,7 +61,15 @@ class VoiceSeparatorDirector(object):
         ----------
         separator : ResamplingVoiceSeparator
             The new separator instance to be used for processing speaker isolation.
+
+        Raises
+        ------
+        TypeError
+            If the provided separator is not an instance of ResamplingVoiceSeparator.
         """
+
+        if not isinstance(separator, ResamplingVoiceSeparator):
+            raise TypeError("Separator must be an instance of ResamplingVoiceSeparator.")
 
         self._separator = separator
 
