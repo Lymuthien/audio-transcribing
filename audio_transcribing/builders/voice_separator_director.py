@@ -26,7 +26,8 @@ class VoiceSeparatorDirector(object):
     set_separator(separator):
         Updates the separator instance for handling speaker separation tasks.
     separate_speakers(content, max_speakers=None):
-        Performs speaker diarization to separate the provided audio content into segments.
+        Performs speaker diarization to separate the provided audio content into
+        segments.
 
     Example Usage
     -------------
@@ -73,9 +74,11 @@ class VoiceSeparatorDirector(object):
 
         self._separator = separator
 
-    def separate_speakers(self,
-                          content: bytes,
-                          max_speakers: int | None = None) -> list[dict]:
+    def separate_speakers(
+            self,
+            content: bytes,
+            max_speakers: int | None = None
+    ) -> list[dict]:
         """
         Separates speakers in the given audio content.
 
@@ -106,4 +109,5 @@ class VoiceSeparatorDirector(object):
         audio, sr = self._separator.get_audio_stream(content)
         audio = self._separator.get_mono_audio(audio)
         audio = self._separator.resample_audio(audio, sr)
+
         return self._separator.separate_speakers(audio, max_speakers)

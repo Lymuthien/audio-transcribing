@@ -29,9 +29,11 @@ class VoiceSeparatorWithPyAnnote(ResamplingVoiceSeparator):
         Performs speaker diarization on input audio.
     """
 
-    def __init__(self,
-                 token: str,
-                 model_name: str = "pyannote/speaker-diarization-3.1"):
+    def __init__(
+            self,
+            token: str,
+            model_name: str = "pyannote/speaker-diarization-3.1"
+    ):
         """
         Initializes the VoiceSeparatorWithPyAnnote.
 
@@ -55,9 +57,11 @@ class VoiceSeparatorWithPyAnnote(ResamplingVoiceSeparator):
         except Exception as e:
             raise RuntimeError(f"Failed to load PyAnnote pipeline: {e}")
 
-    def separate_speakers(self,
-                          audio: np.ndarray,
-                          max_speakers: int = None) -> list[dict]:
+    def separate_speakers(
+            self,
+            audio: np.ndarray,
+            max_speakers: int = None
+    ) -> list[dict]:
         """
         Performs speaker diarization on the given audio data.
 

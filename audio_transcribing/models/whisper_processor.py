@@ -39,10 +39,12 @@ class WhisperProcessor(WhisperTranscribeProcessor):
         self._model_size = model_size
         self._model = whisper.load_model(model_size)
 
-    def transcribe_audio(self,
-                         audio: np.ndarray,
-                         language: str = None,
-                         main_theme: str = None) -> tuple[str, str]:
+    def transcribe_audio(
+            self,
+            audio: np.ndarray,
+            language: str = None,
+            main_theme: str = None
+    ) -> tuple[str, str]:
         """
         Transcribe given audio into text and detects the language.
 

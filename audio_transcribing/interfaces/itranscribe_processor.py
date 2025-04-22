@@ -31,10 +31,12 @@ class ITranscribeProcessor(ABC):
     """
 
     @abstractmethod
-    def transcribe_audio(self,
-                         content: np.ndarray,
-                         language: str = None,
-                         main_theme: str = None) -> tuple[str, str]:
+    def transcribe_audio(
+            self,
+            content: np.ndarray,
+            language: str = None,
+            main_theme: str = None
+    ) -> tuple[str, str]:
         """
         Transcribes the given audio content into text.
 
@@ -73,7 +75,9 @@ class WhisperTranscribeProcessor(ITranscribeProcessor, AudioProcessingMixin):
     """
 
     @abstractmethod
-    def transcribe_audio(self,
-                         audio: np.ndarray,
-                         language: str = None,
-                         main_theme: str = None) -> tuple[str, str]: ...
+    def transcribe_audio(
+            self,
+            audio: np.ndarray,
+            language: str = None,
+            main_theme: str = None
+    ) -> tuple[str, str]: ...

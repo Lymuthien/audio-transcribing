@@ -33,9 +33,11 @@ class IVoiceSeparator(ABC):
     """
 
     @abstractmethod
-    def separate_speakers(self,
-                          content: np.ndarray,
-                          max_speakers: int) -> list[dict]:
+    def separate_speakers(
+            self,
+            content: np.ndarray,
+            max_speakers: int
+    ) -> list[dict]:
         """
         Separates the given audio content into speaker segments.
 
@@ -69,6 +71,8 @@ class ResamplingVoiceSeparator(IVoiceSeparator, AudioProcessingMixin):
     """
 
     @abstractmethod
-    def separate_speakers(self,
-                          content: np.ndarray,
-                          max_speakers: int) -> list[dict]: ...
+    def separate_speakers(
+            self,
+            content: np.ndarray,
+            max_speakers: int
+    ) -> list[dict]: ...

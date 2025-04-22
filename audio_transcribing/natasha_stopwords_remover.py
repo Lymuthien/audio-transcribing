@@ -48,14 +48,20 @@ class NatashaStopwordsRemover(IStopwordsRemover):
     text_remover = NatashaStopwordsRemover()
 
     text_remover.add_words_to_stopwords({"ай", "эй"})
-    text_without_stopwords = text_remover.remove_stopwords(text, remove_swear_words=True, go_few_times=False)
+    text_without_stopwords = text_remover.remove_stopwords(
+        text, remove_swear_words=True, go_few_times=False
+        )
 
     """
 
     def __init__(self):
-        self.__stopwords = {'типа', 'короче', 'ну', 'э', 'вообще', 'вообще-то', 'похоже', 'походу', 'вот', 'блин',
-                            'эм', 'так'}
-        self.__swear_words = {'бля', 'блять', 'пиздец', 'ахуеть', }
+        self.__stopwords = {
+            'типа', 'короче', 'ну', 'э', 'вообще', 'вообще-то', 'похоже',
+            'походу', 'вот', 'блин', 'эм', 'так'
+        }
+        self.__swear_words = {
+            'бля', 'блять', 'пиздец', 'ахуеть',
+        }
         self._segmenter = Segmenter()
         self._morph_vocab = MorphVocab()
         self._emb = NewsEmbedding()
@@ -86,22 +92,26 @@ class NatashaStopwordsRemover(IStopwordsRemover):
 
         self.__swear_words.update(words)
 
-    def remove_stopwords(self,
-                         text: str,
-                         remove_swear_words: bool = True,
-                         go_few_times: bool = False) -> str:
+    def remove_stopwords(
+            self,
+            text: str,
+            remove_swear_words: bool = True,
+            go_few_times: bool = False
+    ) -> str:
         """
         Removes stopwords and optionally swear words from the given text.
 
         Basic removing words:
-        'типа', 'короче', 'ну', 'э', 'вообще', 'вообще-то', 'похоже', 'походу', 'вот', 'блин', 'эм', 'так'
+        'типа', 'короче', 'ну', 'э', 'вообще', 'вообще-то', 'похоже',
+        'походу', 'вот', 'блин', 'эм', 'так'
 
         Basic swear words:
         'бля', 'блять', 'пиздец', 'ахуеть'
 
         Words removed from text by the context.
-        If go_few_times and some stopwords weren't removed, try remove them one more time. If text haven't changed,
-        it's a final result. This flag can delete important words. Be careful.
+        If go_few_times and some stopwords weren't removed, try remove them
+        one more time. If text haven't changed, it's a final result. This
+        flag can delete important words. Be careful.
         Removing of swear words can work incorrect.
 
         Parameters
@@ -144,9 +154,11 @@ class NatashaStopwordsRemover(IStopwordsRemover):
 
         return '\n'.join(new_paragraphs)[1:] if new_paragraphs else ''
 
-    def remove_words(self,
-                     text: str,
-                     removing_words: tuple | list) -> str:
+    def remove_words(
+            self,
+            text: str,
+            removing_words: tuple | list
+    ) -> str:
         """
         Removes specific words from the given text.
 
@@ -162,7 +174,6 @@ class NatashaStopwordsRemover(IStopwordsRemover):
         str
             Cleaned text with specified words removed.
         """
-
 
         removing_words = set(map(lambda s: s.lower().strip(), removing_words))
         paragraphs = text.split('\n')
@@ -183,7 +194,12 @@ class NatashaStopwordsRemover(IStopwordsRemover):
 
         return '\n'.join(new_paragraphs)[1:] if new_paragraphs else ''
 
-    def _is_stopword(self, all_tokens, target_token, remove_swear_words: bool) -> bool:
+    def _is_stopword(
+            self,
+            all_tokens,
+            target_token,
+            remove_swear_words: bool
+    ) -> bool:
         """
         Check if given token is stopword.
 
@@ -207,10 +223,12 @@ class NatashaStopwordsRemover(IStopwordsRemover):
         """
 
         lower_text = target_token.text.lower()
-        if lower_text not in self.__stopwords and (lower_text not in self.__swear_words and remove_swear_words):
+        if (lower_text not in self.__stopwords and
+                (lower_text not in self.__swear_words and remove_swear_words)):
             return False
 
-        dependents = [token for token in all_tokens if token.head_id == target_token.id]
+        dependents = [token for token in all_tokens
+                      if token.head_id == target_token.id]
         for token in dependents:
             if token.rel not in ['discourse', 'punct', 'ccomp']:
                 return False

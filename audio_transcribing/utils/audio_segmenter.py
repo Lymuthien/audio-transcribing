@@ -26,9 +26,11 @@ class AudioSegmenter(object):
     """
 
     @staticmethod
-    def extract_audio_segment(content: bytes,
-                              start_time: float,
-                              end_time: float) -> bytes:
+    def extract_audio_segment(
+            content: bytes,
+            start_time: float,
+            end_time: float
+    ) -> bytes:
         """
         Extracts an audio fragment from the complete audio based on the specified timestamps.
 

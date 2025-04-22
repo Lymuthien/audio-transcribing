@@ -76,8 +76,9 @@ class Transcriber(object):
     def transcribe(
             self,
             content: bytes,
-            language: str | None = None,
-            max_speakers: str | None = None
+            language: str = None,
+            max_speakers: str = None,
+            main_theme: str = None,
     ) -> str:
         """
         Transcribes the given audio content and performs speaker diarization.
@@ -95,6 +96,8 @@ class Transcriber(object):
         max_speakers : int, optional
             Maximum number of speakers to identify. If None, the model will
             decide automatically.
+        main_theme : str, optional
+            Keywords for audio. Special vocabulary.
 
         Returns
         -------
@@ -104,14 +107,13 @@ class Transcriber(object):
                 [Speaker] Transcription...
         """
 
-        # start_time = time.time()
-        segments = self._voice_sep_director.separate_speakers(content, max_speakers=max_speakers)
-        # end_time = time.time()
-        # print(f"Time for voice separation: {end_time - start_time}")
+        segments = self._voice_sep_director.separate_speakers(
+            content=content,
+            max_speakers=max_speakers
+        )
 
         transcription_results = []
 
-        # start_time1 = time.time()
         for segment in segments:
             segment_audio = AudioSegmenter.extract_audio_segment(
                 content,
@@ -121,14 +123,13 @@ class Transcriber(object):
 
             segment_text, detected_language = self._whisper_director.transcribe_audio(
                 content=segment_audio,
-                language=language
+                language=language,
+                main_theme=main_theme,
             )
 
             transcription_results.append(
                 f"[{segment["speaker"]}: {segment["start"]}] {segment_text.strip()}"
             )
-        # end_time1 = time.time()
-        # print(f"Time for transcription: {end_time1 - start_time1}")
 
         full_transcription = "\n\n".join(transcription_results)
 

@@ -29,7 +29,11 @@ class IStopwordsRemover(ABC):
     """
 
     @abstractmethod
-    def remove_stopwords(self, text: str, remove_swear_words: bool = True) -> str:
+    def remove_stopwords(
+            self,
+            text: str,
+            remove_swear_words: bool = True
+    ) -> str:
         """
         Removes stopwords and optionally swear words from the given text.
 
@@ -48,7 +52,11 @@ class IStopwordsRemover(ABC):
         pass
 
     @abstractmethod
-    def remove_words(self, text: str, removing_words: tuple | list) -> str:
+    def remove_words(
+            self,
+            text: str,
+            removing_words: tuple | list
+    ) -> str:
         """
         Removes specific words from the text.
 

@@ -73,10 +73,12 @@ class TranscribeProcessorDirector(object):
 
         self._processor = processor
 
-    def transcribe_audio(self,
-                         content: bytes,
-                         language: str = None,
-                         main_theme: str = None) -> tuple[str, str]:
+    def transcribe_audio(
+            self,
+            content: bytes,
+            language: str = None,
+            main_theme: str = None
+    ) -> tuple[str, str]:
         """
         Transcribes the given audio content and optionally detects its language.
 
@@ -107,4 +109,5 @@ class TranscribeProcessorDirector(object):
         audio, sr = self._processor.get_audio_stream(content)
         audio = self._processor.get_mono_audio(audio)
         audio = self._processor.resample_audio(audio, sr)
+
         return self._processor.transcribe_audio(audio, language, main_theme)
