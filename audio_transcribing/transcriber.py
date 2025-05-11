@@ -77,7 +77,7 @@ class Transcriber(object):
             self,
             content: bytes,
             language: str = None,
-            max_speakers: str = None,
+            max_speakers: int = None,
             main_theme: str = None,
     ) -> str:
         """
