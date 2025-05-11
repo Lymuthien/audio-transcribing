@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="audio_transcribing",
-    version="0.2.1",
+    version="0.2.2",
     description="A toolkit for audio transcription, speaker diarization, and text processing",
     long_description=open("README.md", "r", encoding="utf-8").read(),
     long_description_content_type="text/markdown",
@@ -17,7 +17,8 @@ setup(
         "torch>=1.10.0",
         "faster-whisper>=1.0.0",
         "pyannote.audio>=2.0.1",
-        "whisper>=1.0",
+        "openai-whisper>=20240930",
+        "torchvision>=0.21.0",
         "natasha>=1.6.0",
     ],
     python_requires=">=3.8",
