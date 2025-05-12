@@ -79,7 +79,7 @@ class Transcriber(object):
             language: str = None,
             max_speakers: int = None,
             main_theme: str = None,
-    ) -> str:
+    ) -> tuple[str, str]:
         """
         Transcribes the given audio content and performs speaker diarization.
 
@@ -101,10 +101,11 @@ class Transcriber(object):
 
         Returns
         -------
-        str
+        tuple[str,str]
             Full transcription of the audio with speaker separation
             annotations, formatted as:
                 [Speaker] Transcription...
+            Detected language
         """
 
         segments = self._voice_sep_director.separate_speakers(
@@ -114,6 +115,7 @@ class Transcriber(object):
 
         transcription_results = []
 
+        detected_language = "Not found"
         for segment in segments:
             segment_audio = AudioSegmenter.extract_audio_segment(
                 content,
@@ -133,4 +135,4 @@ class Transcriber(object):
 
         full_transcription = "\n\n".join(transcription_results)
 
-        return full_transcription
+        return full_transcription, detected_language
