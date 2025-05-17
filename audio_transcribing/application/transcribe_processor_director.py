@@ -10,7 +10,7 @@ TranscribeProcessorDirector:
     Responsible for processing audio transcription tasks.
 """
 
-from ..interfaces import WhisperTranscribeProcessor
+from ..domain import WhisperTranscribeProcessor
 
 
 class TranscribeProcessorDirector(object):
@@ -48,7 +48,7 @@ class TranscribeProcessorDirector(object):
             If processor is not an instance of WhisperTranscribeProcessor.
         """
 
-        self._processor : WhisperTranscribeProcessor | None = None
+        self._processor: WhisperTranscribeProcessor | None = None
         self.set_processor(processor)
 
     def set_processor(self, processor: WhisperTranscribeProcessor) -> None:

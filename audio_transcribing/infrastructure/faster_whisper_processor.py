@@ -13,10 +13,11 @@ FasterWhisperProcessor :
 import numpy as np
 from faster_whisper import WhisperModel
 
-from ..interfaces import WhisperTranscribeProcessor
+from .audio_processing import AudioProcessing
+from ..domain import WhisperTranscribeProcessor
 
 
-class FasterWhisperProcessor(WhisperTranscribeProcessor):
+class FasterWhisperProcessor(AudioProcessing, WhisperTranscribeProcessor):
     """
     A processor for faster audio-to-text transcription using Faster Whisper.
     If using CPU, it is recommended to use 'WhisperProcessor' instead.

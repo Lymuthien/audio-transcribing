@@ -8,13 +8,14 @@ ITranscribeProcessor:
     Abstract interface for implementing audio transcription.
 WhisperTranscribeProcessor:
     Base implementation of the ITranscribeProcessor interface, with additional
-    support for audio preprocessing using `AudioProcessingMixin`.
+    support for audio preprocessing using `IAudioProcessing`.
 """
 
-import numpy as np
 from abc import ABC, abstractmethod
 
-from ..utils import AudioProcessingMixin
+import numpy as np
+
+from .iaudio_processing import IAudioProcessing
 
 
 class ITranscribeProcessor(ABC):
@@ -60,12 +61,12 @@ class ITranscribeProcessor(ABC):
         pass
 
 
-class WhisperTranscribeProcessor(ITranscribeProcessor, AudioProcessingMixin):
+class WhisperTranscribeProcessor(ITranscribeProcessor, IAudioProcessing):
     """
     Abstract base implementation of the ITranscribeProcessor interface.
 
     This class extends `ITranscribeProcessor` and integrates functionality from
-    `AudioProcessingMixin` for audio preprocessing tasks, such as resampling or
+    `IAudioProcessing` for audio preprocessing tasks, such as resampling or
     extracting audio streams.
 
     Methods

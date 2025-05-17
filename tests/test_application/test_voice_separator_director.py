@@ -1,8 +1,8 @@
 import unittest
 from unittest.mock import MagicMock
 
-from audio_transcribing.builders import VoiceSeparatorDirector
-from audio_transcribing.interfaces import ResamplingVoiceSeparator
+from audio_transcribing.application import VoiceSeparatorDirector
+from audio_transcribing.domain.interfaces import ResamplingVoiceSeparator
 
 
 class TestVoiceSeparatorDirector(unittest.TestCase):

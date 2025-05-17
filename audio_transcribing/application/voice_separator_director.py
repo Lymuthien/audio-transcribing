@@ -10,7 +10,7 @@ VoiceSeparatorDirector:
     Responsible for managing speaker diarization tasks.
 """
 
-from ..interfaces import ResamplingVoiceSeparator
+from ..domain import ResamplingVoiceSeparator
 
 
 class VoiceSeparatorDirector(object):

@@ -1,7 +1,7 @@
 import unittest
 from unittest.mock import patch, Mock
 
-from audio_transcribing.models.faster_whisper_processor import FasterWhisperProcessor
+from audio_transcribing.infrastructure.faster_whisper_processor import FasterWhisperProcessor
 
 
 class TestFasterWhisperProcessor(unittest.TestCase):

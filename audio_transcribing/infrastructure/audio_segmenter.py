@@ -12,6 +12,7 @@ AudioSegmenter :
 """
 
 from io import BytesIO
+
 import soundfile as sf
 
 

@@ -19,7 +19,7 @@ from natasha import (
     Doc
 )
 
-from .interfaces import IStopwordsRemover
+from ..domain import IStopwordsRemover
 
 
 class NatashaStopwordsRemover(IStopwordsRemover):

@@ -3,7 +3,7 @@ Package: audio_transcribing
 
 This package provides classes for transcribing and processing audio content.
 It supports speaker diarization, stopword removal, and transcription using
-different models.
+different infrastructure.
 
 Classes
 -------
@@ -13,7 +13,7 @@ Transcriber :
     Class for performing audio transcription and processing tasks.
 """
 
-from .natasha_stopwords_remover import *
-from .transcriber import *
+from .infrastructure.natasha_stopwords_remover import *
+from .infrastructure.transcriber import *
 
 __all__ = ["Transcriber", "NatashaStopwordsRemover"]

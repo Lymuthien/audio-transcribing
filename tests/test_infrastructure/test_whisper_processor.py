@@ -2,7 +2,7 @@ import unittest
 from unittest.mock import patch, Mock
 
 import numpy as np
-from audio_transcribing.models.whisper_processor import WhisperProcessor
+from audio_transcribing.infrastructure.whisper_processor import WhisperProcessor
 
 
 class TestWhisperProcessor(unittest.TestCase):

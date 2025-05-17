@@ -1,8 +1,8 @@
 import unittest
 from unittest.mock import MagicMock
 
-from audio_transcribing.builders import TranscribeProcessorDirector
-from audio_transcribing.interfaces import WhisperTranscribeProcessor
+from audio_transcribing.application import TranscribeProcessorDirector
+from audio_transcribing.domain.interfaces import WhisperTranscribeProcessor
 
 
 class TestTranscribeProcessorDirector(unittest.TestCase):

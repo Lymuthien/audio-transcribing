@@ -12,14 +12,16 @@ VoiceSeparatorWithPyAnnote :
 
 from copy import deepcopy
 from typing import Any
-from pyannote.audio import Pipeline
-import torch
+
 import numpy as np
+import torch
+from pyannote.audio import Pipeline
 
-from ..interfaces import ResamplingVoiceSeparator
+from .audio_processing import AudioProcessing
+from ..domain import ResamplingVoiceSeparator
 
 
-class VoiceSeparatorWithPyAnnote(ResamplingVoiceSeparator):
+class VoiceSeparatorWithPyAnnote(AudioProcessing, ResamplingVoiceSeparator):
     """
     Implements speaker separation using PyAnnote.
 

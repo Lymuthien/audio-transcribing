@@ -11,14 +11,17 @@ AudioProcessingMixin: A utility mixin for audio processing functions.
 """
 
 from io import BytesIO
+
 import numpy as np
-import soundfile as sf
 import scipy.signal
+import soundfile as sf
+
+from ..domain import IAudioProcessing
 
 
-class AudioProcessingMixin(object):
+class AudioProcessing(IAudioProcessing):
     """
-    A mixin class that provides static methods for audio processing tasks.
+    A class that provides static methods for audio processing tasks.
 
     This class serves as a utility mixin, supplying reusable audio processing
     functions that can be used in other components or classes.

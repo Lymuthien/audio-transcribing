@@ -1,7 +1,7 @@
 import unittest
 from unittest.mock import patch, Mock
 
-from audio_transcribing.models.voice_separator import VoiceSeparatorWithPyAnnote
+from audio_transcribing.infrastructure.voice_separator import VoiceSeparatorWithPyAnnote
 
 
 class TestVoiceSeparator(unittest.TestCase):

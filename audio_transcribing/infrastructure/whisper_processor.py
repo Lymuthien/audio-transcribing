@@ -10,13 +10,14 @@ WhisperProcessor :
     Provides methods for transcribing audio using Whisper.
 """
 
-import whisper
 import numpy as np
+import whisper
 
-from ..interfaces import WhisperTranscribeProcessor
+from .audio_processing import AudioProcessing
+from ..domain import WhisperTranscribeProcessor
 
 
-class WhisperProcessor(WhisperTranscribeProcessor):
+class WhisperProcessor(AudioProcessing, WhisperTranscribeProcessor):
     """
     A processor for audio-to-text transcription using Whisper.
 

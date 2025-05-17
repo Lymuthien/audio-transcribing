@@ -1,5 +1,5 @@
 """
-Package: audio_transcribing.builders
+Package: audio_transcribing.application
 -----------------------------------
 
 This package provides utility classes for directing and managing audio-related

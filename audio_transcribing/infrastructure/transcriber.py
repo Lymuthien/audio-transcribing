@@ -8,14 +8,15 @@ Faster Whisper and PyAnnote speaker diarization.
 Classes
 -------
 Transcriber :
-    A general-purpose transcription framework that supports multiple models
+    A general-purpose transcription framework that supports multiple infrastructure
     and utilities.
 """
 
-from .models import (VoiceSeparatorWithPyAnnote, WhisperProcessor,
-                     FasterWhisperProcessor)
-from .builders import TranscribeProcessorDirector, VoiceSeparatorDirector
-from .utils import AudioSegmenter
+from .audio_segmenter import AudioSegmenter
+from .faster_whisper_processor import FasterWhisperProcessor
+from .voice_separator import VoiceSeparatorWithPyAnnote
+from .whisper_processor import WhisperProcessor
+from ..application import TranscribeProcessorDirector, VoiceSeparatorDirector
 
 
 class Transcriber(object):
@@ -45,7 +46,7 @@ class Transcriber(object):
             use_faster_whisper: bool = False
     ):
         """
-        Initializes the Transcriber with the specified models and configurations.
+        Initializes the Transcriber with the specified infrastructure and configurations.
 
         Parameters
         ----------

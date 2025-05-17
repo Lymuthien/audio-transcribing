@@ -9,13 +9,14 @@ IVoiceSeparator:
     Abstract interface for separating speakers in audio content.
 ResamplingVoiceSeparator:
     A base implementation of the IVoiceSeparator interface, which includes
-    resampling utilities through `AudioProcessingMixin`.
+    resampling utilities through `IAudioProcessing`.
 """
 
-import numpy as np
 from abc import ABC, abstractmethod
 
-from ..utils import AudioProcessingMixin
+import numpy as np
+
+from .iaudio_processing import IAudioProcessing
 
 
 class IVoiceSeparator(ABC):
@@ -57,7 +58,7 @@ class IVoiceSeparator(ABC):
         pass
 
 
-class ResamplingVoiceSeparator(IVoiceSeparator, AudioProcessingMixin):
+class ResamplingVoiceSeparator(IVoiceSeparator, IAudioProcessing):
     """
     Abstract base implementation of the IVoiceSeparator interface.
 
