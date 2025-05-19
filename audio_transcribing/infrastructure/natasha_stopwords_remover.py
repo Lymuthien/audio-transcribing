@@ -223,8 +223,13 @@ class NatashaStopwordsRemover(IStopwordsRemover):
         """
 
         lower_text = target_token.text.lower()
-        if (lower_text not in self.__stopwords and
-                (lower_text not in self.__swear_words and remove_swear_words)):
+        if (
+            remove_swear_words
+            and lower_text not in self.__stopwords
+            and lower_text not in self.__swear_words
+        ):
+            return False
+        elif not remove_swear_words and lower_text not in self.__stopwords:
             return False
 
         dependents = [token for token in all_tokens
